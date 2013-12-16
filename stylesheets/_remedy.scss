@@ -1,3 +1,6 @@
+// remedy.scss 
+// edited remify.scss by Daniel Dilsaver to take rems and convert them to a pixel fallback
+
 $baseline-px: 16px;
 
 @function remedy($rems) {
