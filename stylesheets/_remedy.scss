@@ -1,0 +1,34 @@
+$baseline-px: 16px;
+
+@function remedy($rems) {
+  
+  @if $rems == 0 {
+    @return 0;
+  }
+
+  @if type-of(rem) == "number" {
+    @return $rem * $baseline-px;
+  } @else {
+    $px: ();
+
+    @each $rem in $rems {
+      @if $rem == 0 {
+        $px: append($px, $rem);
+      } @else {
+        $stripped: strip-unit($rem); 
+        $px: append($px, ($stripped * $baseline-px));
+      }
+    }
+
+    @return $px;
+  }
+}
+// Removes the unit from the number value 
+@function strip-unit($number) {
+  @return $number / ($number * 0 + 1);
+}
+
+@mixin remedy($property, $values) {
+  #{$property}: remedy($values);
+  #{$property}: $values;
+}
