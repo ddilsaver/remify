@@ -17,6 +17,10 @@ $baseline-px: 16px;
     @each $rem in $rems {
       @if $rem == 0 {
         $px: append($px, $rem);
+      } @else if $rem == 'auto' {
+        $px: append($px, $rem); 
+      } @else if $rem == 'inherit' {
+        $px: append($px, $rem);
       } @else {
         $stripped: strip-unit($rem); 
         $px: append($px, ($stripped * $baseline-px));
